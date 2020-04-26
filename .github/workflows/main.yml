@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DOCKER_IMAGE: dzlabsch/build-notarize-docker-action
+      DOCKER_IMAGE: madmaxh7/build-docker-action
 
     steps:
       - name: "Checkout"
