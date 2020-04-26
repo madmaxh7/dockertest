@@ -1,4 +1,4 @@
-name: Install njinx
+name: Install
 
 on:
   push:
@@ -9,25 +9,25 @@ on:
       - master
 
 jobs:
-  nginx:
+  ci:
     runs-on: ubuntu-latest
     container:
       image: node
 
     steps:
-      - uses: actions/test@v1
-      - name: Install
+      - uses: actions/checkout@v1
+      - name: Install & Tests
         run: |
           npm install
           npm test
   cd:
     runs-on: ubuntu-latest
-    needs: nginx
+    needs: ci
 
     steps:
-      - uses: actions/test@v1
+      - uses: actions/checkout@v1
       - name: Docker login
-        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+        run: docker login -u madmaxh7 -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build
         run: docker build -t back .
       - name: Tags
